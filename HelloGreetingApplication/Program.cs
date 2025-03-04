@@ -1,5 +1,6 @@
 using BusinessLayer.Interface;
 using BusinessLayer.Service;
+using NLog;
 using RepositoryLayer.Interface;
 using RepositoryLayer.Service;
 
@@ -15,7 +16,8 @@ builder.Services.AddScoped<IGreetingBL, GreetingBL>();
 // Swagger Configuration
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+var logger = LogManager.Setup().LoadConfigurationFromFile("nlog.config").GetCurrentClassLogger();
+logger.Info("Application is starting...");
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
