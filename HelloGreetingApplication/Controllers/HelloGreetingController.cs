@@ -54,6 +54,26 @@ namespace HelloGreetingApplication.Controllers
             return Ok(responseModel);
         }
 
+        ///<summary>
+        ///Get Greet Message by Name
+        ///</summary>
+        ///<returns></returns>
+        [HttpPost("GreetbyNameUC3")]
+        public IActionResult GetGreetbyName(UserRequestModel request)
+        {
+            var message = _greetingBL.GetGreetingbyName(request);
+            ResponseModel<string> responseModel = new ResponseModel<string>
+            {
+                Success = true,
+                Message = "Greet message with Name",
+                Data = message // Call Business Layer method
+            };
+
+            _logger.Info("Post method Executed with Name");
+            return Ok(responseModel);
+
+        }
+
         /// <summary>
         /// Post method to accept a custom greeting message
         /// </summary>
