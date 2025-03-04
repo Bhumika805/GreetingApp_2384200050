@@ -34,7 +34,7 @@ namespace HelloGreetingApplication.Controllers
 
             responseModel.Success = true;
             responseModel.Message = "API Endpoint Hit";
-            responseModel.Data = "Hello World";
+            responseModel.Data = "Hello World ";
             _logger.Info("Get Method Executed");
             return Ok(responseModel);
         }
