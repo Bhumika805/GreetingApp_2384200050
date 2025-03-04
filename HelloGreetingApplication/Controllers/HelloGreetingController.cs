@@ -1,12 +1,10 @@
-using BusinessLayer.Interface;
-using BusinessLayer.Service;
 using Microsoft.AspNetCore.Mvc;
 using ModelLayer.Model;
 using NLog;
+using BusinessLayer.Interface;
 
 namespace HelloGreetingApplication.Controllers
 {
-
     /// <summary>
     /// Class Providing API for HelloGreeting
     /// </summary>
@@ -14,27 +12,44 @@ namespace HelloGreetingApplication.Controllers
     [Route("[controller]")]
     public class HelloGreetingController : ControllerBase
     {
-        
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
         private readonly IGreetingBL _greetingBL;
 
-        public HelloGreetingController(IGreetingBL greetingBL) // Use the interface
+        public HelloGreetingController(IGreetingBL greetingBL) // Use Dependency Injection
         {
             _greetingBL = greetingBL;
+        }
+
+        [HttpGet("GetGreetingUC1")]
+
+        public IActionResult Get()
+        {
+            ResponseModel<string> responseModel = new ResponseModel<string>
+            {
+                Success = true,
+                Message = "API Endpoint Hit",
+                Data = "UC1 Get Method call"
+            };
+
+            _logger.Info("Get Method Executed");
+            return Ok(responseModel);
         }
 
         /// <summary>
         /// Get method to get the Greeting Message
         /// </summary>
         /// <returns>"Hello World"</returns>
-        [HttpGet]
-        public IActionResult Get()
-        {
-            ResponseModel<String> responseModel = new ResponseModel<string>();
+        [HttpGet("GetGreetUC2")]
 
-            responseModel.Success = true;
-            responseModel.Message = "API Endpoint Hit";
-            responseModel.Data = "Hello World ";
+        public IActionResult GetGreet()
+        {
+            ResponseModel<string> responseModel = new ResponseModel<string>
+            {
+                Success = true,
+                Message = "API Endpoint Hit",
+                Data = _greetingBL.GetGreetingMessage() // Call Business Layer method
+            };
+
             _logger.Info("Get Method Executed");
             return Ok(responseModel);
         }
@@ -45,50 +60,52 @@ namespace HelloGreetingApplication.Controllers
         /// <param name="requestModel">Greeting message from user</param>
         /// <returns>Confirmation response</returns>
         [HttpPost]
+        [Route("GreetingPost")]
         public IActionResult Post(RequestModel requestModel)
         {
-            ResponseModel<String> responseModel = new ResponseModel<string>();
+            ResponseModel<string> responseModel = new ResponseModel<string>
+            {
+                Success = true,
+                Message = "API Endpoint Hit",
+                Data = $"Key: {requestModel.Key}, Value: {requestModel.Value}"
+            };
 
-            responseModel.Success = true;
-            responseModel.Message = "API Endpoint Hit";
-            responseModel.Data = $"Key: {requestModel.Key} , Value : {requestModel.Value} ";
             _logger.Info("Post Method Executed");
             return Ok(responseModel);
-
-
         }
 
         /// <summary>
-        /// Put method to accept a custom greeting message
+        /// Put method to update a greeting message
         /// </summary>
-        /// <param name="requestModel">Greeting message from user</param>
-        /// <returns>Confirmation response</returns>
         [HttpPut]
+        [Route("GreetingPut")]
         public IActionResult Put(RequestModel requestModel)
         {
-            ResponseModel<String> responseModel = new ResponseModel<string>();
+            ResponseModel<string> responseModel = new ResponseModel<string>
+            {
+                Success = true,
+                Message = "API Endpoint Hit in Put Method",
+                Data = $"Key: {requestModel.Key}, Value: {requestModel.Value}"
+            };
 
-            responseModel.Success = true;
-            responseModel.Message = "API Endpoint Hit in Put Method";
-            responseModel.Data = $"Key: {requestModel.Key} , Value : {requestModel.Value} ";
             _logger.Info("Put Method Executed");
             return Ok(responseModel);
-            
         }
 
         /// <summary>
-        /// Patch method to accept a custom greeting message
+        /// Patch method to partially update a greeting message
         /// </summary>
-        /// <param name="requestModel">Greeting message from user</param>
-        /// <returns>Confirmation response</returns>
         [HttpPatch]
+        [Route("GreetingPatch")]
         public IActionResult Patch(RequestModel requestModel)
         {
-            ResponseModel<String> responseModel = new ResponseModel<string>();
+            ResponseModel<string> responseModel = new ResponseModel<string>
+            {
+                Success = true,
+                Message = "API Endpoint Hit",
+                Data = $"Key: {requestModel.Key}, Value: {requestModel.Value}"
+            };
 
-            responseModel.Success = true;
-            responseModel.Message = "API Endpoint Hit";
-            responseModel.Data = $"Key: {requestModel.Key} , Value : {requestModel.Value} ";
             _logger.Info("Patch Method Executed");
             return Ok(responseModel);
         }
@@ -97,22 +114,18 @@ namespace HelloGreetingApplication.Controllers
         /// Delete method to remove a greeting message
         /// </summary>
         [HttpDelete]
+        [Route("GreetingDelete")]
         public IActionResult Delete()
         {
+            ResponseModel<string> responseModel = new ResponseModel<string>
+            {
+                Success = true,
+                Message = "API Endpoint Hit",
+                Data = null
+            };
 
-            ResponseModel<String> responseModel = new ResponseModel<string>();
-
-            responseModel.Success = true;
-            responseModel.Message = "API Endpoint Hit";
-            responseModel.Data = null ;
-            _logger.Info("Detele Method Executed");
+            _logger.Info("Delete Method Executed");
             return Ok(responseModel);
-        }
-
-        [HttpGet("greet")]
-        public string get()
-        {
-           return _greetingBL.getGreetMessage();
         }
     }
 }
