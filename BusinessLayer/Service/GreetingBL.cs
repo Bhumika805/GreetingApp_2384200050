@@ -38,6 +38,10 @@ namespace BusinessLayer.Service
             return _greetingRL.GetGreetingById(id);
         }
 
+        public List<Greeting> GetGreetingList()
+        {
+            return _greetingRL.GetGreetingList();
+        }
 
     }
 }

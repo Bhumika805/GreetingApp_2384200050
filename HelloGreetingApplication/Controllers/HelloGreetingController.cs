@@ -126,6 +126,31 @@ namespace HelloGreetingApplication.Controllers
             return Ok(responseModel);
         }
 
+        ///<summary>
+        ///Get All Greetings Data in a List in the Repository
+        ///</summary>
+        /// <returns>Returns a list of all stored greetings. 
+        /// If no greetings are found, returns a 404 Not Found response.
+        /// </returns>
+
+        [HttpGet("GetGreetingList_UC6")]
+        public IActionResult GetGreetingList()
+        {
+            var greetings = _greetingBL.GetGreetingList();
+            if (greetings == null || greetings.Count == 0)
+
+            {
+                return NotFound(new {Success = false, Message = "No Greeting List"});
+            }
+            ResponseModel<List<Greeting>> responseModel = new ResponseModel<List<Greeting>>
+            {
+                Success = true,
+                Message = "Greeting List Retrieved Successfully",
+                Data = greetings
+            };
+            _logger.Info("GetGreeting Method Executed Successfully");
+            return Ok(responseModel);
+        }
 
         /// <summary>
         /// Post method to accept a custom greeting message

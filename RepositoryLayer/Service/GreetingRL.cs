@@ -47,6 +47,11 @@ namespace RepositoryLayer.Service
             return greeting?.Message ?? "Greeting not found";
         }
 
+        public List<Greeting> GetGreetingList()
+        {
+            return _context.Greetings.ToList();
+        }
+
     }
 
 }
