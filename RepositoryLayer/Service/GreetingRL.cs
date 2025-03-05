@@ -1,4 +1,7 @@
-﻿using ModelLayer.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using ModelLayer.Model;
+using RepositoryLayer.Context;
+using RepositoryLayer.Entity;
 using RepositoryLayer.Interface;
 using System;
 using System.Collections.Generic;
@@ -26,6 +29,22 @@ namespace RepositoryLayer.Service
                 }
                 return "Hello World!";
         }
+        private readonly GreetingDbContext _context;
+
+        public GreetingRL(GreetingDbContext context)
+        {
+            _context = context;
+        }
+        public Greeting AddGreeting(Greeting greeting)
+        {
+            _context.Greetings.Add(greeting);
+            _context.SaveChanges();
+            return greeting;
+        }
+
+        
+
+        
     }
 
 }
