@@ -101,7 +101,31 @@ namespace HelloGreetingApplication.Controllers
             return Ok(responseModel);
         }
 
-        
+        ///<summary>
+        ///Get Greeting by Id
+        ///</summary>
+        ///<param name = "id">Greeting ID</param>
+        ///<returns>Greeting Message</returns>
+
+        [HttpGet("GetGreetingByID_UC5/{id}")]
+        public IActionResult GetGreetingById(int id)
+        {
+            var greetingmessage = _greetingBL.GetGreetingById(id);
+            if (greetingmessage == null)
+            {
+                return NotFound(new { Success = false, Message = "Greeting not Found" });
+            }
+
+            ResponseModel<string> responseModel = new ResponseModel<string>
+            {
+                Success = true,
+                Message = "Greeting received successfully",
+                Data = greetingmessage // Call Business Layer method
+            };
+            _logger.Info("GetGreeting Method Executed Successfully");
+            return Ok(responseModel);
+        }
+
 
         /// <summary>
         /// Post method to accept a custom greeting message

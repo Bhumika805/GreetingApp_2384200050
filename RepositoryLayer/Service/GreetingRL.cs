@@ -41,10 +41,12 @@ namespace RepositoryLayer.Service
             _context.SaveChanges();
             return greeting;
         }
+        public string GetGreetingById(int id)
+        {
+            var greeting = _context.Greetings.FirstOrDefault(x => x.Id == id);
+            return greeting?.Message ?? "Greeting not found";
+        }
 
-        
-
-        
     }
 
 }
