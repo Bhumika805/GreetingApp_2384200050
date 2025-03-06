@@ -157,7 +157,7 @@ namespace HelloGreetingApplication.Controllers
         ///<returns>Returns a success response if the greeting is saved, or an error response if the input is invalid.
         ///</returns>
 
-        [HttpPatch("UpdateGreeting/{id}")]
+        [HttpPatch("UpdateGreeting_UC7/{id}")]
         public IActionResult UpdateGreetingMessage(int id, [FromBody] RequestModel requestModel)
         {
             var updatedGreeting = _greetingBL.UpdateGreetingMessage(id, requestModel.Value);
