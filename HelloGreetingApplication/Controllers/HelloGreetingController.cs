@@ -138,7 +138,6 @@ namespace HelloGreetingApplication.Controllers
         {
             var greetings = _greetingBL.GetGreetingList();
             if (greetings == null || greetings.Count == 0)
-
             {
                 return NotFound(new {Success = false, Message = "No Greeting List"});
             }
@@ -151,6 +150,34 @@ namespace HelloGreetingApplication.Controllers
             _logger.Info("GetGreeting Method Executed Successfully");
             return Ok(responseModel);
         }
+
+        ///<summary>
+        ///Patch Data - Edit Greetin message in the Reposiory 
+        ///</summary>
+        ///<returns>Returns a success response if the greeting is saved, or an error response if the input is invalid.
+        ///</returns>
+
+        [HttpPatch("UpdateGreeting/{id}")]
+        public IActionResult UpdateGreetingMessage(int id, [FromBody] RequestModel requestModel)
+        {
+            var updatedGreeting = _greetingBL.UpdateGreetingMessage(id, requestModel.Value);
+
+            if (updatedGreeting == null)
+            {
+                return NotFound(new { Success = false, Message = "Greeting not found" });
+            }
+
+            ResponseModel<Greeting> responseModel = new ResponseModel<Greeting>
+            {
+                Success = true,
+                Message = "Greeting updated successfully",
+                Data = updatedGreeting
+            };
+
+            _logger.Info("Patch method executed successfully");
+            return Ok(responseModel);
+        }
+
 
         /// <summary>
         /// Post method to accept a custom greeting message
@@ -201,7 +228,7 @@ namespace HelloGreetingApplication.Controllers
             {
                 Success = true,
                 Message = "API Endpoint Hit",
-                Data = $"Key: {requestModel.Key}, Value: {requestModel.Value}"
+                Data = $" Value: {requestModel.Value}"
             };
 
             _logger.Info("Patch Method Executed");

@@ -42,6 +42,10 @@ namespace BusinessLayer.Service
         {
             return _greetingRL.GetGreetingList();
         }
+        public Greeting UpdateGreetingMessage(int id, string newMessage)
+        {
+            return _greetingRL.UpdateGreetingMessage(id, newMessage);
+        }
 
     }
 }

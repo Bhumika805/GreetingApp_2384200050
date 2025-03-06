@@ -52,6 +52,19 @@ namespace RepositoryLayer.Service
             return _context.Greetings.ToList();
         }
 
+        public Greeting UpdateGreetingMessage(int id, string newMessage)
+        {
+            var greeting = _context.Greetings.FirstOrDefault(x => x.Id == id);
+
+            if (greeting != null)
+            {
+                greeting.Message = newMessage;
+                _context.SaveChanges();
+            }
+
+            return greeting;
+        }
+
     }
 
 }
