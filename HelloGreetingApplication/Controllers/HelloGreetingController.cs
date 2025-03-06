@@ -152,7 +152,7 @@ namespace HelloGreetingApplication.Controllers
         }
 
         ///<summary>
-        ///Patch Data - Edit Greetin message in the Reposiory 
+        ///Patch Data - Edit Greeting message in the Reposiory 
         ///</summary>
         ///<returns>Returns a success response if the greeting is saved, or an error response if the input is invalid.
         ///</returns>
@@ -175,6 +175,32 @@ namespace HelloGreetingApplication.Controllers
             };
 
             _logger.Info("Patch method executed successfully");
+            return Ok(responseModel);
+        }
+
+        ///<summary>
+        ///Delete Data - Delete Greeting message in the Reposiory 
+        ///</summary>
+        ///<returns>Returns a success response if the greeting is saved, or an error response if the input is invalid.
+        ///</returns>
+        
+        [HttpDelete("DeleteGreeting_UC8/{id}")]
+        public IActionResult DeleteGreeting(int id)
+        {
+            var isDeleted = _greetingBL.DeleteGreeting(id);
+
+            if (!isDeleted)
+            {
+                return NotFound(new { Success = false, Message = "Greeting not found" });
+            }
+
+            ResponseModel<string> responseModel = new ResponseModel<string>
+            {
+                Success = true,
+                Message = "Greeting deleted successfully"
+            };
+
+            _logger.Info($"Greeting with ID {id} deleted successfully");
             return Ok(responseModel);
         }
 

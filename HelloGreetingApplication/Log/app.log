@@ -49,3 +49,6 @@
 2025-03-06 08:11:03.4652 | Info | Application is starting... 
 2025-03-06 08:25:04.9382 | Info | Patch method executed successfully 
 2025-03-06 08:25:22.8696 | Info | GetGreeting Method Executed Successfully 
+2025-03-06 08:45:50.1699 | Info | Application is starting... 
+2025-03-06 08:46:23.7796 | Info | Greeting with ID 2 deleted successfully 
+2025-03-06 08:47:04.0853 | Info | GetGreeting Method Executed Successfully 
