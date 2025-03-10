@@ -3,6 +3,7 @@ using ModelLayer.Model;
 using NLog;
 using BusinessLayer.Interface;
 using RepositoryLayer.Entity;
+using MiddlewareLibrary.Middleware;
 
 namespace HelloGreetingApplication.Controllers
 {
@@ -204,6 +205,19 @@ namespace HelloGreetingApplication.Controllers
             return Ok(responseModel);
         }
 
+        ///<summary>
+        ///Handle Exception Globally 
+        ///</summary>
+        ///<returns>"StatusCode": 500,"Message": "Something went wrong!"
+        ///</returns>
+
+        [HttpGet]
+        [Route("GreetingUC9")]
+        public IActionResult GetUC9()
+        {
+            throw new Exception("Something went wrong!");
+        }
+
 
         /// <summary>
         /// Post method to accept a custom greeting message
@@ -278,5 +292,6 @@ namespace HelloGreetingApplication.Controllers
             _logger.Info("Delete Method Executed");
             return Ok(responseModel);
         }
+
     }
 }

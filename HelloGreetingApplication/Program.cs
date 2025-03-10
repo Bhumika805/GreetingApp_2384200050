@@ -8,6 +8,8 @@ using NLog;
 using RepositoryLayer.Context;
 using RepositoryLayer.Interface;
 using RepositoryLayer.Service;
+using MiddlewareLibrary;
+using MiddlewareLibrary.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,7 +40,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+app.UseMiddleware<ExceptionMiddleware>(); // Use Middleware from Class Library
+app.UseRouting();
 app.UseHttpsRedirection();
 app.UseAuthorization();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 app.MapControllers();
 app.Run();

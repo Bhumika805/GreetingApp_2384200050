@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloGreetingApplication", "HelloGreetingApplication\HelloGreetingApplication.csproj", "{0B648D70-06EE-4526-8EB7-773F6D8F8ACA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloGreetingApplication", "HelloGreetingApplication\HelloGreetingApplication.csproj", "{0B648D70-06EE-4526-8EB7-773F6D8F8ACA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{DBEDB8A0-CD34-4ADC-AA0D-5AF24E5458F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{DBEDB8A0-CD34-4ADC-AA0D-5AF24E5458F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelLayer", "ModelLayer\ModelLayer.csproj", "{D91A05D0-237B-4539-AB43-D94F095C0A70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelLayer", "ModelLayer\ModelLayer.csproj", "{D91A05D0-237B-4539-AB43-D94F095C0A70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryLayer", "RepositoryLayer\RepositoryLayer.csproj", "{41863C8A-2700-4D55-9CE8-7118470F7C03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryLayer", "RepositoryLayer\RepositoryLayer.csproj", "{41863C8A-2700-4D55-9CE8-7118470F7C03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddlewareLibrary", "Middleware\MiddlewareLibrary.csproj", "{43B5C22B-12FE-4ED1-9731-EB07E75B96CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,15 @@ Global
 		{41863C8A-2700-4D55-9CE8-7118470F7C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41863C8A-2700-4D55-9CE8-7118470F7C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41863C8A-2700-4D55-9CE8-7118470F7C03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43B5C22B-12FE-4ED1-9731-EB07E75B96CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43B5C22B-12FE-4ED1-9731-EB07E75B96CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43B5C22B-12FE-4ED1-9731-EB07E75B96CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43B5C22B-12FE-4ED1-9731-EB07E75B96CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FBC35B52-2E66-4E4C-8436-5124F00F94FE}
 	EndGlobalSection
 EndGlobal
