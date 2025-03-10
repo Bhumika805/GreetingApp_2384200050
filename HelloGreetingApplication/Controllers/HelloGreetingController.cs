@@ -212,7 +212,7 @@ namespace HelloGreetingApplication.Controllers
         ///</returns>
 
         [HttpGet]
-        [Route("GreetingUC9")]
+        [Route("GlobalException_UC9")]
         public IActionResult GetUC9()
         {
             throw new Exception("Something went wrong!");
